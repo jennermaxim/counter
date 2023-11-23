@@ -142,7 +142,8 @@ let setCounter = () => {
         txt.innerHTML = "DONE";
         txt.style.backgroundColor = "red";
         num.style.backgroundColor = "red";
+        min.style.backgroundColor = "#000";
         clearInterval(counters);
     }
-  }, 1000);
+  }, 60000);
 };
