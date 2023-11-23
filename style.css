@@ -16,12 +16,35 @@ body{
     position: fixed;
 }
 
-.main .counter .num{
+.main .counter .txt{
+    /* color: #fff; */
+    background-color: #9b9b9b;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.main .counter .timer .num{
     font-size: 100px;
     background-color: #9b9b9b;
-    width: fit-content;
     padding: 20px;
-    border-radius: 50px;
+    border-radius: 50px 0 50px 50px;
+}
+
+.main .counter .timer{
+    display: flex;
+    position: relative;
+}
+
+.main .counter .timer .min{
+    position: absolute;
+    right: 0;
+    color: #fff;
+    background-color: red;
+    padding: 5px;
+    border-radius: 10px 0 10px 10px;
 }
 
 .main .counter .btn{
