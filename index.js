@@ -3,12 +3,13 @@ main.innerHTML = `
   <div class="counter">
     <div class="txt">START</div>
     <div class="timer">
-      <div class="num">120</div>
-      <div class="min">7200</div>
+      <div class="num">0</div>
+      <div class="min">0</div>
     </div>
     <button class="btn">Start</button>
     <audio src="rest.mp3" class="restaudio"></audio>
     <audio src="start.mp3" class="startaudio"></audio>
+    <input type="number" class="input" placeholder="How many minutes do you wanna work"/>
   </div>
 `;
 
@@ -18,18 +19,30 @@ let min = document.querySelector(".main .counter .min");
 let btn = document.querySelector(".main .counter .btn");
 let restAudio = document.querySelector(".main .counter .restaudio");
 let startAudio = document.querySelector(".main .counter .startaudio");
-let i = num.innerHTML;
-let a = min.innerHTML;
+// let i = num.innerHTML;
+let i;
+let a;
 
+let input = document.querySelector(".main .counter .input");
 btn.onclick = () => {
-  startAudio.play();
-  txt.innerHTML = "WORKING";
-  txt.style.color = "#fff";
-  txt.style.backgroundColor = "green";
-  num.style.color = "#fff";
-  num.style.backgroundColor = "green";
-  setMin();
-  setCounter();
+  let numb = /\d/g.test(input.value);
+  if (numb) {
+    i = input.value;
+    a = i * 60;
+    num.innerHTML = i;
+    min.innerHTML = a;
+    startAudio.play();
+    txt.innerHTML = "WORKING";
+    txt.style.color = "#fff";
+    txt.style.backgroundColor = "green";
+    num.style.color = "#fff";
+    num.style.backgroundColor = "green";
+    setMin();
+    setCounter();
+  } else {
+    alert("Please enter a valid number");
+  }
+  input.value = "";
 };
 
 let setMin = () => {
@@ -48,7 +61,7 @@ let setCounter = () => {
     num.innerHTML = i;
 
     switch (i) {
-      case 95:
+      case 105:
         let rest = setInterval(() => {
           restAudio.play();
           setTimeout(() => {
@@ -63,7 +76,7 @@ let setCounter = () => {
         num.style.backgroundColor = "yellow";
         break;
 
-      case 90:
+      case 100:
         let start = setInterval(() => {
           startAudio.play();
           setTimeout(() => {
@@ -78,7 +91,7 @@ let setCounter = () => {
         num.style.backgroundColor = "green";
         break;
 
-      case 65:
+      case 70:
         let rest2 = setInterval(() => {
           restAudio.play();
           setTimeout(() => {
@@ -93,7 +106,7 @@ let setCounter = () => {
         num.style.backgroundColor = "yellow";
         break;
 
-      case 60:
+      case 65:
         let start2 = setInterval(() => {
           startAudio.play();
           setTimeout(() => {
@@ -144,6 +157,16 @@ let setCounter = () => {
         num.style.backgroundColor = "red";
         min.style.backgroundColor = "#000";
         clearInterval(counters);
+        break;
+    }
+    if (i < 0) {
+      clearInterval(counters);
+      num.innerHTML = 0;
     }
   }, 60000);
+};
+
+input.onfocus = () => {
+  let keyEvent = Event.charCode || Event.keyCode;
+  console.log(keyEvent);
 };
