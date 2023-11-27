@@ -9,7 +9,7 @@ main.innerHTML = `
     <button class="btn">Start</button>
     <audio src="rest.mp3" class="restaudio"></audio>
     <audio src="start.mp3" class="startaudio"></audio>
-    <input type="number" class="input" placeholder="How many minutes do you wanna work"/>
+    <input type="number" class="input" placeholder="How many minutes do you wanna work""/>
   </div>
 `;
 
@@ -164,9 +164,4 @@ let setCounter = () => {
       num.innerHTML = 0;
     }
   }, 60000);
-};
-
-input.onfocus = () => {
-  let keyEvent = Event.charCode || Event.keyCode;
-  console.log(keyEvent);
 };
